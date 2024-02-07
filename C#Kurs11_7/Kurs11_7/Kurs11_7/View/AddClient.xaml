@@ -1,0 +1,38 @@
+﻿<Window x:Class="Kurs11_7.View.AddClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kurs11_7.View"
+        mc:Ignorable="d"
+        Title="AddClient" Height="300" Width="300"
+        Name="AddNewClientwnd">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              Width="200">
+            <TextBlock Text="Имя"/>
+            <TextBox Name ="NameBox"  Text="{Binding ClientName}"/>
+            <TextBlock Text="Фамилия"/>
+            <TextBox Name ="SecondNameBox"  Text="{Binding ClientSecondName}"/>
+            <TextBlock Text="Оттчество"/>
+            <TextBox Name ="LastNameBox"  Text="{Binding ClientLastName}"/>
+            <TextBlock Text="Номре телефона"/>
+            <TextBox Name ="NumberBox"  Text="{Binding ClientNumber}"/>
+            <TextBlock Text="Пасспортные данные"/>
+             <TextBox Name ="PassportBox"  Text="{Binding ClientPassportData}"/>
+            <TextBlock Text="ID департамента"/>
+            <ComboBox Name ="Combobox" ItemsSource="{Binding AllDepartments}"
+                      SelectedItem="{Binding Selecteditem}"
+                      DisplayMemberPath="Name"/>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Добавить Клиента" Command="{Binding AddNewClient}"
+                CommandParameter="{Binding ElementName=AddNewClientwnd}" />
+
+    </Grid>
+</Window>

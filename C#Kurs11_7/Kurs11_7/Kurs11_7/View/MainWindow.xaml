@@ -1,0 +1,72 @@
+﻿<Window x:Class="Kurs11_7.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kurs11_7.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0">
+            <TabItem Name="UsersTab">
+                <TabItem.Header>
+                    <TextBlock Text="Клиенты"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактировать" Command="{Binding OpenEditClientOnNew}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteClient}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView Name="ViewAllClients" ItemsSource="{Binding AllClients}"
+                          SelectedItem ="{Binding SelectionClient}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Имя"
+                                            DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Фамилия"
+                                            DisplayMemberBinding="{Binding Path=SecondName}"/>
+                            <GridViewColumn Header="Оттчество" 
+                                            DisplayMemberBinding="{Binding Path=LastName}"/>
+                            <GridViewColumn Header="Номер"
+                                            DisplayMemberBinding="{Binding Path=Number}"/>
+                            <GridViewColumn Header="Пасспортные данные"
+                                            DisplayMemberBinding="{Binding Path=PassportData}"/>
+                            <GridViewColumn Header="ID"
+                                            DisplayMemberBinding="{Binding Path=DepartmentID}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Name="DepartmenTab">
+                <TabItem.Header>
+                    <TextBlock Text="Департаменты"/>
+                </TabItem.Header>
+                <ListView Name="ViewAllDepartmens" ItemsSource="{Binding AllDepartments}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Название департамента"
+                                            DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="колличество людей"
+                                            DisplayMemberBinding="{Binding Path= ListClient.Count}"/>
+                            <GridViewColumn Header="ID"
+                                            DisplayMemberBinding="{Binding Path=ID}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+        </TabControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="AddButton" Content="Новый Клиент" Command="{Binding OpenAddNewClientWind}"/>
+            <Button Content="Новый Депортамент" Command="{Binding OpenAddNewDepartmentWind}"/>
+            <Button Content="Сортировка департамента" Command="{Binding SortDepartment}"/>
+            <Button Content="Сортировка департамента" Command="{Binding SortClient}"/>
+
+        </StackPanel>
+    </Grid>
+</Window>
